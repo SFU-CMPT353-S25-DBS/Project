@@ -109,14 +109,14 @@ $ git log --before="2025-01-02" --since="2024-01-01" --pretty=format:%H:%ct --re
 432a5b6c31a31705e150218cfc7cdcb28d38baa6:1704164904
 fe8cc40d10aa32dfe535ba8938fb2ab24928b097:1704165758
 cc13d5d616c2be0ac2c3f9bd8665cc1334cb5886:1704166366
-...
+# ...
 ```
 
 A couple quick notes on these commands:
 
-1. To get information specifically on the bchydro-outages repository, you need to make sure that your CWD is set to be in that directory. If you run these commands in, say, the root of our project directory, it will show you repo information for our project instead.
+1. Git commands operate in the **closest parent folder containing a git repo**. So, to get information specifically on the bchydro-outages repository, you need to make sure that your CWD is set to be in that sub-directory. If you run these commands in, say, the root of our project directory, it will show you repo information for our project instead.
 
-2. The way I get this data back into Python is via the `capture_output=True` option when I create the subprocess. This makes a little more sense if you done any work with Unix systems, but it effectively changes Python to be the "stdout" location of the command, instead of your command line. Learning more about "stdout" and "stderr" might be a good idea (look up "bash redirection"), but is beyond the scope of what I want to talk about.
+2. The way I get this data back into Python is via the `capture_output=True` option which I specified when creating the subprocess. This makes a little more sense if you done any work with Unix systems, but it effectively changes Python to be the "stdout" location of the command, instead the terminal as is normal. Learning more about "stdout" and "stderr" might be a good idea (look up **bash redirection**), but is beyond the scope of what I want to talk about.
 
 ## Reading the Commits
 The next goal is to read each commit to get the active outages out of them.

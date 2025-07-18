@@ -2,11 +2,18 @@
   <Card style="margin-top: 30px" class="articleWrapper">
     <template #header>
       <div class="articleHeader">
-        <h1>{{ doc?.title }}</h1>
-        <NuxtLink :to="{ name: 'blog' }">
-          <Button class="p-background-fuchsia-900">Go Back</Button>
-        </NuxtLink>
+        <div style="display: flex; align-items: center; width: 100%; justify-content: space-between;">
+          <h1>{{ doc?.title }}</h1>
+          <NuxtLink :to="{ name: 'blog' }">
+            <Button class="p-background-fuchsia-900">Go Back</Button>
+          </NuxtLink>
+        </div>
+        <div style="align-self: flex-start;">
+          <LanguageIcon v-for="language in doc?.languages" :key="language" :language="language" size="28"
+            style="margin-right: 5px" />
+        </div>
       </div>
+      <hr style="color: rgba(0,0,0,0.2); margin-top: 24px; margin-bottom: 0px;" />
     </template>
     <template #content>
       <template v-if="doc">
@@ -42,10 +49,11 @@ const { data: doc } = await useAsyncData(route.path, () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .articleWrapper:deep(.p-card-content) {
-  line-height: 1.25;
+  line-height: 1.5;
 }
 
 @media screen and (max-width: 600px) {
@@ -53,6 +61,7 @@ const { data: doc } = await useAsyncData(route.path, () => {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .articleHeader h1 {
     margin-bottom: 10px;
   }

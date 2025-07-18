@@ -12,12 +12,8 @@
       <template #footer>
         <div v-if="!page.languages?.length" style="flex-grow: 1" />
         <div v-else>
-          <LanguageIcon
-            v-for="language in page.languages"
-            :key="language"
-            :language="language"
-            style="margin-right: 5px"
-          />
+          <LanguageIcon v-for="language in page.languages" :key="language" :language="language"
+            style="margin-right: 5px" />
         </div>
         <NuxtLink :key="page.id" :to="{
           name: 'blog-slug',

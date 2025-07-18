@@ -6,7 +6,7 @@
       size="24"
       style="margin-right: 5px"
     />
-    <code :class="$class"><slot /></code>
+    <code :class="class"><slot /></code>
   </div>
 </template>
 
