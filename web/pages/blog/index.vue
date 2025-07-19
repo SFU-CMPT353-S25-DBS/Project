@@ -1,28 +1,36 @@
 <template>
-  <div class="articles">
-    <Card v-for="page in pages" class="article">
-      <template #title>
-        {{ page.sequence !== undefined ? `${page.sequence}. ` : undefined }}{{ page.title }}
-      </template>
-      <template #content v-if="page.description?.length">
-        <div style="padding-bottom: 10px !important;">
-          {{ page.description }}
-        </div>
-      </template>
-      <template #footer>
-        <div v-if="!page.languages?.length" style="flex-grow: 1" />
-        <div v-else>
-          <LanguageIcon v-for="language in page.languages" :key="language" :language="language"
-            style="margin-right: 5px" />
-        </div>
-        <NuxtLink :key="page.id" :to="{
-          name: 'blog-slug',
-          params: { slug: page.path.slice(1) },
-        }">
-          <Button>Read</Button>
-        </NuxtLink>
-      </template>
-    </Card>
+  <div class="articlesWrapper">
+    <div
+      style="display: flex; justify-content: end; margin-bottom: 18px; width: 100%; padding-left: 0.5em; padding-right: 0.5em">
+      <NuxtLink :to="{ name: 'index' }" external>
+        <Button class="p-background-fuchsia-900">Go Back</Button>
+      </NuxtLink>
+    </div>
+    <div class="articles">
+      <Card v-for="page in pages" class="article">
+        <template #title>
+          {{ page.sequence !== undefined ? `${page.sequence}. ` : undefined }}{{ page.title }}
+        </template>
+        <template #content v-if="page.description?.length">
+          <div style="padding-bottom: 10px !important;">
+            {{ page.description }}
+          </div>
+        </template>
+        <template #footer>
+          <div v-if="!page.languages?.length" style="flex-grow: 1" />
+          <div v-else>
+            <LanguageIcon v-for="language in page.languages" :key="language" :language="language"
+              style="margin-right: 5px" />
+          </div>
+          <NuxtLink :key="page.id" :to="{
+            name: 'blog-slug',
+            params: { slug: page.path.slice(1) },
+          }">
+            <Button>Read</Button>
+          </NuxtLink>
+        </template>
+      </Card>
+    </div>
   </div>
 </template>
 
@@ -35,22 +43,29 @@ const { data: pages } = await useAsyncData(route.path, () => {
 </script>
 
 <style scoped>
+.articlesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: var(--p-stone-200);
+  border-radius: 32px;
+  margin-top: 30px;
+  padding: 20px;
+  justify-content: center;
+}
+
 .articles {
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
   width: 100%;
-  flex-grow: 1;
-  background-color: var(--p-stone-200);
-  border-radius: 32px;
-  margin: 30px;
-  padding: 20px;
   justify-content: center;
 }
 
 @media (max-width: 600px) {
-  .articles {
+  .articlesWrapper {
     margin: 0;
+    padding: 0;
     border-radius: 0;
   }
 }
