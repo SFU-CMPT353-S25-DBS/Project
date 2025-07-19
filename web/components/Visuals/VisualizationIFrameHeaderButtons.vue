@@ -15,6 +15,7 @@
         <Icon name="mdi:link-variant" />
       </template>
     </Button>
+
     <NuxtLink
       :to="{
         path: `${$nuxt.$config.app.baseURL}visuals/${fileNameNoExt}`,

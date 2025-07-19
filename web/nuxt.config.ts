@@ -23,7 +23,7 @@ const MyPreset = definePreset(Aura, {
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  modules: ["@nuxt/fonts", "@nuxt/icon", "@primevue/nuxt-module"],
+  modules: ["@nuxt/fonts", "@nuxt/icon", "@primevue/nuxt-module", "@nuxt/content"],
   primevue: {
     options: {
       theme: {
@@ -38,6 +38,36 @@ export default defineNuxtConfig({
     },
     directives: {
       include: ['Ripple', 'Tooltip'],
+    }
+  },
+
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: [
+            "js", 
+            "ts",
+            "html",
+            "css",
+            "vue",
+            "json",
+            "csv",
+            "shell",
+            "md",
+            "yaml",
+            "mdc",
+            "python",
+            "py"
+          ]
+        },
+        toc: {
+          depth: 2
+        }
+      }
+    },
+    renderer: {
+      anchorLinks: false
     }
   },
 
