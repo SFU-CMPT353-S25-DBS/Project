@@ -9,6 +9,7 @@
       :to="{
         name: 'blog',
       }"
+      external
     >
       <Button text>
         Blog
